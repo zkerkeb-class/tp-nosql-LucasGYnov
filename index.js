@@ -1,27 +1,25 @@
-// Charger les variables d'environnement en PREMIER (avant tout autre import)
-// dotenv lit le fichier .env et rend les variables accessibles via process.env
-import 'dotenv/config';
-
+import 'dotenv/config'; // Charge le .env immédiatement
 import express from 'express';
 import cors from 'cors';
-
-
+import pokemonsRouter from './routes/pokemons.js';
+import connectDB from './db/connect.js'; // Un seul import suffit
 
 const app = express();
 
-app.use(cors()); // Permet les requêtes cross-origin (ex: frontend sur un autre port)
+// Connexion à la base de données
+connectDB(); 
 
-app.use('/assets', express.static('assets')); // Permet d'accéder aux fichiers dans le dossier "assets" via l'URL /assets/...
-
+app.use(cors());
 app.use(express.json());
+app.use('/assets', express.static('assets'));
 
+app.use('/', pokemonsRouter);
 
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+    res.send('API Pokémon opérationnelle !');
 });
 
-
-
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`Server is running on http://localhost:${process.env.PORT || 3000}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
