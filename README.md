@@ -1,4 +1,6 @@
-# Pokédex Full-Stack 
+# Pokédex Full-Stack
+
+## Lucas GERARD
 
 ![Aperçu du site](./pokedexSite.png)
 
@@ -6,6 +8,20 @@ Une application web complète permettant de consulter un Pokédex, de créer un 
 
 🎥 **[Voir la démonstration vidéo du projet](https://youtu.be/tAdlDhXaBEo)**
 
+---
+
+## 🎯 Accomplissement du TP
+Ce projet valide **l'intégralité des étapes du TP NoSQL**, de la partie 1 (Premières routes Express) jusqu'à la **partie 6 (Pour aller plus loin)**, incluant :
+* Le système de favoris (6.A)
+* Les statistiques avancées avec l'agrégation MongoDB (6.B)
+* La validation avancée avec Mongoose (6.C)
+* Le système d'équipes Pokémon (6.D)
+
+### ⭐ Bonus
+* Création complète d'un **Frontend React** pour interagir avec l'API.
+* Une **collection Bruno** est fournie dans le projet pour faciliter les tests de toutes les routes de l'API.
+
+![Aperçu des routes API](./routeAPI.png)
 ---
 
 ## 🛠 Technologies utilisées
@@ -29,6 +45,7 @@ Avant de commencer, assurez-vous d'avoir installé sur votre machine :
 * Node.js (v18 ou supérieure recommandée)
 * Git
 * Une instance MongoDB en cours d'exécution (locale ou MongoDB Atlas)
+* [Optionnel] Bruno (pour tester l'API)
 
 ---
 
@@ -39,7 +56,7 @@ Le projet utilise une structure "Monorepo" où le backend est à la racine et le
 Ouvrez un terminal et exécutez les commandes suivantes :
 
 ```bash
-git clone https://github.com/zkerkeb-class/tp-nosql-LucasGYnov
+git clone [https://github.com/zkerkeb-class/tp-nosql-LucasGYnov](https://github.com/zkerkeb-class/tp-nosql-LucasGYnov)
 cd tp-nosql-LucasGYnov
 
 ```
@@ -80,6 +97,7 @@ npm run dev
 L'API sera disponible sur `http://localhost:3000`.
 
 ### 3. Configuration du Frontend (React)
+
 Ouvrez un **deuxième terminal**, placez-vous dans le dossier front-end et installez les dépendances :
 
 ```bash
@@ -100,9 +118,11 @@ L'application web sera accessible sur `http://localhost:5173`.
 ---
 
 ## 📦 Dépendances Principales
+
 Si vous souhaitez recréer le projet de zéro, voici les commandes d'installation exactes utilisées.
 
 ### Backend
+
 ```bash
 npm install express mongoose dotenv cors bcrypt jsonwebtoken
 npm install -D nodemon
@@ -110,6 +130,7 @@ npm install -D nodemon
 ```
 
 ### Frontend
+
 ```bash
 npm install react-router-dom axios
 npm install -D tailwindcss @tailwindcss/vite
@@ -119,6 +140,7 @@ npm install -D tailwindcss @tailwindcss/vite
 ---
 
 ## 🗺️ Architecture de l'API (Routes)
+
 * `GET /api/pokemons` : Liste paginée des Pokémon
 * `GET /api/pokemon/:id` : Détails d'un Pokémon spécifique
 * `POST /api/auth/register` : Inscription d'un dresseur
@@ -130,9 +152,12 @@ npm install -D tailwindcss @tailwindcss/vite
 * `PUT /api/pokemon/:id` : Éditer les informations d'un Pokémon (Protégé / Admin)
 * `DELETE /api/pokemon/:id` : Supprimer un Pokémon (Protégé / Admin)
 
+*(Retrouvez l'intégralité des tests de ces routes dans la collection Bruno incluse dans le projet)*
+
 ---
 
 ## 💡 Fonctionnalités de l'interface
+
 * **Pokédex complet :** Grille Bento avec pagination, affichage des types dynamiques.
 * **Authentification :** Création de compte et connexion sécurisée par Token.
 * **Espace "Mes Équipes" :** Création d'équipes et ajout jusqu'à 6 Pokémon par équipe.
