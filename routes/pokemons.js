@@ -1,21 +1,13 @@
 import express from 'express';
+import { auth } from '../middlewares/auth.js';
+import * as pokemonCtrl from '../Controller/pokemonController.js';
+
 const router = express.Router();
 
-import pokemonList from '../data/pokemonsList.js'; 
-
-router.get('/pokemons', (req, res) => { 
-    res.json(pokemonList);
-});
-
-router.get('/pokemon/:id', (req, res) => {  
-    const pokemonId = parseInt(req.params.id, 10);
-    const pokemon = pokemonList.find(p => p.id === pokemonId);
-    
-    if (pokemon) {
-        res.json(pokemon);
-    } else {
-        res.status(404).json({ error: 'Pokémon non trouvé' });
-    }
-});
+router.get('/pokemons', pokemonCtrl.getAll);
+router.get('/pokemon/:id', pokemonCtrl.getOne);
+router.post('/pokemons', auth, pokemonCtrl.create);
+router.put('/pokemon/:id', auth, pokemonCtrl.update);
+router.delete('/pokemon/:id', auth, pokemonCtrl.remove);
 
 export default router;

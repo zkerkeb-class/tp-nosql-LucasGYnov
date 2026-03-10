@@ -1,33 +1,33 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+
+const ALLOWED_TYPES = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"];
 
 const pokemonSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: true,
+    id: { 
+        type: Number, 
+        required: [true, "L'ID est obligatoire"], 
         unique: true,
+        min: [1, "L'ID doit être un entier positif"]
     },
     name: {
-        english: { type: String },
-        japanese: { type: String },
-        chinese: { type: String },
-        french: { type: String, required: true },
+        english: String,
+        french: String,
+        japanese: String,
+        chinese: String
     },
-    type: {
-        type: [String],
-        required: true,
-    },
+    type: [{ 
+        type: String, 
+        enum: { values: ALLOWED_TYPES, message: "{VALUE} n'est pas un type de Pokémon valide" }
+    }],
     base: {
-        HP: { type: Number, required: true },
-        Attack: { type: Number, required: true },
-        Defense: { type: Number, required: true },
-        SpecialAttack: { type: Number, required: true },
-        SpecialDefense: { type: Number, required: true },
-        Speed: { type: Number, required: true },
+        HP: { type: Number, min: 1, max: 255 },
+        Attack: { type: Number, min: 1, max: 255 },
+        Defense: { type: Number, min: 1, max: 255 },
+        SpecialAttack: { type: Number, min: 1, max: 255 },
+        SpecialDefense: { type: Number, min: 1, max: 255 },
+        Speed: { type: Number, min: 1, max: 255 }
     },
-    image: {
-        type: String,
-        required: true,
-    },
+    image: String
 });
 
-export default mongoose.model("pokemon", pokemonSchema);
+export default mongoose.model('Pokemon', pokemonSchema);
